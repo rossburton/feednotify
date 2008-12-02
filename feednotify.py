@@ -57,13 +57,18 @@ class Feed:
     def run(self):
         feed = feedparser.parse(self.url, etag=self.etag, modified=self.modified)
         # TODO: handle errors and popup a error notification
-        if feed.status == 200:
-            # OK
-            self.parse(feed)
-        elif feed.status == 301:
-            # Moved Permanently
-            self.url = feed.url
-            self.parse(feed)
+        if feed.status >= 200 and feed.status < 400:
+            # Success and Redirection
+            if feed.status == 304:
+                # Not Modified, no-op
+                pass
+            elif feed.status == 301:
+                # Moved Permanently
+                self.url = feed.url
+                self.parse(feed)
+            else:
+                # Everything else
+                self.parse(feed)
         elif feed.status == 410:
             # Gone
             feeds.remove(feed)
