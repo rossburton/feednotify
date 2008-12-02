@@ -15,11 +15,15 @@
 # this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301 USA
 
+VERSION="0.1"
+
 import feedparser, pynotify
 
 # TODO: somehow add a "save for later" button which does... something.
 
 pynotify.init("FeedNotify")
+
+feedparser.USER_AGENT = "FeedNotify/%s +http://burtonini.com/" % VERSION
 
 class Feed:
     def __init__(self, title, url):
