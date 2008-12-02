@@ -18,6 +18,7 @@
 VERSION="0.1"
 
 import feedparser, pynotify
+from xml.sax.saxutils import escape
 
 # TODO: somehow add a "save for later" button which does... something.
 
@@ -48,7 +49,7 @@ class Feed:
                     # TODO: improve this to be the N most recent unseen posts
                 if count < 5:
                     count = count + 1
-                    message = "<a href='%s'>%s</a>" % (entry.link, entry.title)
+                    message = "<a href='%s'>%s</a>" % (entry.link, escape(entry.title))
                     n = pynotify.Notification(self.title, message)
                     n.set_category("email.arrived")
                     n.set_urgency(0)
