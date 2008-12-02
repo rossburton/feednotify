@@ -42,3 +42,4 @@ feeds = (
 
 while True:
     [feed.run() for feed in feeds]
+    time.sleep(5 * 60)
