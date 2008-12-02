@@ -15,7 +15,7 @@
 # this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301 USA
 
-import feedparser, time, pynotify
+import feedparser, pynotify
 
 # TODO: somehow add a "save for later" button which does... something.
 
@@ -56,6 +56,8 @@ feeds = (
     Feed("Comment Is Free", "http://feeds.guardian.co.uk/theguardian/commentisfree/rss"),
 )
 
-while True:
-    [feed.run() for feed in feeds]
-    time.sleep(5 * 60)
+if __name__ == "__main__":
+    import time
+    while True:
+        [feed.run() for feed in feeds]
+        time.sleep(5 * 60)
