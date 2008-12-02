@@ -18,6 +18,7 @@ class Feed:
 
     def run(self):
         feed = feedparser.parse(self.url, etag=self.etag, modified=self.modified)
+        # TODO: handle errors and popup a error notification
         if feed.status == 200:
             self.etag = feed.etag
             self.modified = feed.modified
