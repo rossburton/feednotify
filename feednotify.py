@@ -64,9 +64,9 @@ class Feed:
             # Moved Permanently
             self.url = feed.url
             self.parse(feed)
-        elif feed.status == 401:
+        elif feed.status == 410:
             # Gone
-            del feeds[feed]
+            feeds.remove(feed)
 
 feeds.append(Feed("Guardian", "http://feeds.guardian.co.uk/theguardian/rss"))
 feeds.append(Feed("Comment Is Free", "http://feeds.guardian.co.uk/theguardian/commentisfree/rss"))
