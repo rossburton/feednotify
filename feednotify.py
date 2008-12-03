@@ -96,7 +96,6 @@ if __name__ == "__main__":
     else:
         feeds.append(Feed("Guardian", "http://feeds.guardian.co.uk/theguardian/rss"))
         feeds.append(Feed("Comment Is Free", "http://feeds.guardian.co.uk/theguardian/commentisfree/rss"))
-    print feeds
 
     while True:
         [feed.run() for feed in feeds]
