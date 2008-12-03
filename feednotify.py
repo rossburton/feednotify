@@ -87,11 +87,18 @@ class Feed:
             # Gone
             feeds.remove(feed)
 
-feeds.append(Feed("Guardian", "http://feeds.guardian.co.uk/theguardian/rss"))
-feeds.append(Feed("Comment Is Free", "http://feeds.guardian.co.uk/theguardian/commentisfree/rss"))
 
 if __name__ == "__main__":
-    import time
+    import sys, time
+
+    if sys.argv[1:]:
+        for url in sys.argv[1:]:
+            feeds.append(Feed("Test", url))
+    else:
+        feeds.append(Feed("Guardian", "http://feeds.guardian.co.uk/theguardian/rss"))
+        feeds.append(Feed("Comment Is Free", "http://feeds.guardian.co.uk/theguardian/commentisfree/rss"))
+    print feeds
+
     while True:
         [feed.run() for feed in feeds]
         time.sleep(5 * 60)
