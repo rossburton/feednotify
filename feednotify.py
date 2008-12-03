@@ -61,7 +61,6 @@ class Feed:
                     n.show()
 
         # Now previous is the set of IDs which have falled out of the feed
-        print previous
         self.seen = self.seen - previous
 
     def run(self):
