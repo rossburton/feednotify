@@ -54,10 +54,9 @@ class Feed:
                 if count < 5:
                     count = count + 1
                     message = "<a href='%s'>%s</a>" % (entry.link, escape(entry.title))
-                    n = pynotify.Notification(self.title, message)
+                    n = pynotify.Notification(self.title, message, "stock_news")
                     n.set_category("email.arrived")
                     n.set_urgency(0)
-                    # TODO: Set icon to stock_news
                     n.show()
 
         # Now previous is the set of IDs which have falled out of the feed
