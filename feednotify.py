@@ -45,12 +45,12 @@ class Feed:
         previous = self.seen.copy()
         items = []
 
+        # TODO: sort the items to ensure that the newest ones are first
         for entry in feed.entries:
             if entry.id in previous:
                 previous.remove(entry.id)
             else:
                 self.seen.add(entry.id)
-                # TODO: improve this to be the N most recent unseen posts
                 if len(items) < 5:
                     items.append("&#8226; <a href='%s'>%s</a>" % (entry.link, escape(entry.title)))
 
