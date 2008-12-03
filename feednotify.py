@@ -54,6 +54,7 @@ class Feed:
                     n = pynotify.Notification(self.title, message)
                     n.set_category("email.arrived")
                     n.set_urgency(0)
+                    # TODO: Set icon to stock_news
                     n.show()
 
         # Now previous is the set of IDs which have falled out of the feed
