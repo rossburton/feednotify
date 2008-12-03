@@ -57,7 +57,7 @@ class Feed:
         if items:
             n = pynotify.Notification(self.title, "\n".join(items), "stock_news")
             # 5 seconds per item
-            n.set_timeout(1000 * 5 * len(items))
+            n.set_timeout(len(items) * 5 * 1000)
             n.set_category("email.arrived")
             n.set_urgency(pynotify.URGENCY_LOW)
             n.show()
