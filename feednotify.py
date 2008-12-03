@@ -42,7 +42,6 @@ class Feed:
         if feed.has_key("modified"):
             self.modified = feed.modified
 
-        count = 0
         previous = self.seen.copy()
         items = []
 
@@ -52,8 +51,7 @@ class Feed:
             else:
                 self.seen.add(entry.id)
                 # TODO: improve this to be the N most recent unseen posts
-                if count < 5:
-                    count = count + 1
+                if len(items) < 5:
                     items.append("&#8226; <a href='%s'>%s</a>" % (entry.link, escape(entry.title)))
 
         if items:
