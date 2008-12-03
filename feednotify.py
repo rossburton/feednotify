@@ -44,6 +44,7 @@ class Feed:
 
         count = 0
         previous = self.seen.copy()
+        items = []
 
         for entry in feed.entries:
             if entry.id in previous:
@@ -53,11 +54,15 @@ class Feed:
                 # TODO: improve this to be the N most recent unseen posts
                 if count < 5:
                     count = count + 1
-                    message = "<a href='%s'>%s</a>" % (entry.link, escape(entry.title))
-                    n = pynotify.Notification(self.title, message, "stock_news")
-                    n.set_category("email.arrived")
-                    n.set_urgency(0)
-                    n.show()
+                    items.append("&#8226; <a href='%s'>%s</a>" % (entry.link, escape(entry.title)))
+
+        if items:
+            n = pynotify.Notification(self.title, "\n".join(items), "stock_news")
+            # 5 seconds per item
+            n.set_timeout(1000 * 5 * len(items))
+            n.set_category("email.arrived")
+            n.set_urgency(0)
+            n.show()
 
         # Now previous is the set of IDs which have falled out of the feed
         self.seen = self.seen - previous
