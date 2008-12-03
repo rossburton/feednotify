@@ -61,7 +61,7 @@ class Feed:
             # 5 seconds per item
             n.set_timeout(1000 * 5 * len(items))
             n.set_category("email.arrived")
-            n.set_urgency(0)
+            n.set_urgency(pynotify.URGENCY_LOW)
             n.show()
 
         # Now previous is the set of IDs which have falled out of the feed
