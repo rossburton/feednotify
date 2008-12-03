@@ -37,8 +37,11 @@ class Feed:
         self.modified = None
 
     def parse(self, feed):
-        self.etag = feed.etag
-        self.modified = feed.modified
+        if feed.has_key("etag"):
+            self.etag = feed.etag
+        if feed.has_key("modified"):
+            self.modified = feed.modified
+
         count = 0
         previous = self.seen.copy()
 
