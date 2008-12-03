@@ -67,7 +67,11 @@ class Feed:
     def run(self):
         feed = feedparser.parse(self.url, etag=self.etag, modified=self.modified)
         # TODO: handle errors and popup a error notification
-        if feed.status >= 200 and feed.status < 400:
+        # Local feeds don't have a status
+        if not feed.has_key("status"):
+            self.parse(feed)
+        # If there is a status field, handle it
+        elif feed.status >= 200 and feed.status < 400:
             # Success and Redirection
             if feed.status == 304:
                 # Not Modified, no-op
